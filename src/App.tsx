@@ -1,12 +1,15 @@
-// compoenentes
+// componentes
 import { Container } from './components/Container';
 import { CountDown } from './components/CountDown';
 import { DefaultInput } from './components/DefaultInput';
 import { Cycles } from './components/Cycles';
-
-//Lucide Icons
+import { DefaultButton } from './components/DefaultButton';
 import { Logo } from './components/Logo';
 import { Menu } from './components/Menu';
+import { Footer } from './components/Footer';
+
+// Lucide Icons
+import { PlayCircleIcon, StopCircleIcon } from 'lucide-react';
 
 // css
 import './styles/theme.css';
@@ -38,9 +41,13 @@ export function App() {
           </div>
 
           <div className='formRow'>
-            <button>Enviar</button>
+            <DefaultButton icon={<PlayCircleIcon />} />
+            {/* <DefaultButton icon={<StopCircleIcon />} color='red' /> */}
           </div>
         </form>
+      </Container>
+      <Container>
+        <Footer />
       </Container>
     </>
   );

@@ -1,3 +1,5 @@
+import styles from './styles.module.css';
+
 type defaultInputProps = {
   id: string;
   labelText: string;
@@ -7,12 +9,12 @@ export function DefaultInput({
   id,
   labelText,
   type,
-  ...rest
+  ...props
 }: defaultInputProps) {
   return (
     <>
       {labelText && <label htmlFor={id}>{labelText}</label>}
-      <input id={id} type={type} {...rest} />
+      <input className={styles.input} id={id} type={type} {...props} />
     </>
   );
 }

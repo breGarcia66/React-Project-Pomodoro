@@ -16,7 +16,7 @@
   text-decoration: none;
   background-color: var(--primary);
   color: var(--text-over-primary);
-  transition: all 0.2s;
+  transition: all 0.2s ease-in-out;
 }
 
 .menuLink:hover {
