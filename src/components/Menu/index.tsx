@@ -1,19 +1,57 @@
+import { useState, useEffect } from 'react';
 import { HistoryIcon, HouseIcon, SettingsIcon, SunDimIcon } from 'lucide-react';
 import styles from './styles.module.css';
 
+type avaliableThemes = 'dark' | 'light';
+
 export function Menu() {
+  const [theme, setTheme] = useState<avaliableThemes>('dark');
+
+  function handleThemeChange(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
+    event.preventDefault();
+
+    setTheme(prevTheme => {
+      return prevTheme === 'dark' ? 'light' : 'dark';
+    })
+  }
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+  }, [theme]);
+
   return (
     <nav className={styles.menu}>
-      <a href='#' className={styles.menuLink}>
+      <a
+        href='#'
+        className={styles.menuLink}
+        aria-label='Ir para a home page'
+        title='Home Page'
+      >
         <HouseIcon />
       </a>
-      <a href='#' className={styles.menuLink}>
+      <a
+        href='#'
+        className={styles.menuLink}
+        aria-label='Ver histórico'
+        title='Histórico'
+      >
         <HistoryIcon />
       </a>
-      <a href='#' className={styles.menuLink}>
+      <a
+        href='#'
+        className={styles.menuLink}
+        aria-label='Ir para configurações'
+        title='Configurações'
+      >
         <SettingsIcon />
       </a>
-      <a href='#' className={styles.menuLink}>
+      <a
+        href='#'
+        className={styles.menuLink}
+        aria-label='Muda tema'
+        title='Tema'
+        onClick={handleThemeChange}
+      >
         <SunDimIcon />
       </a>
     </nav>

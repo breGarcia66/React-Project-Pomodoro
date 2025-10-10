@@ -33,7 +33,12 @@ export function App() {
       <Container>
         <form action='' className='form'>
           <div className='formRow'>
-            <DefaultInput id='taskInput' type='text' labelText='Task:' placeholder='Digite algo...'/>
+            <DefaultInput
+              id='taskInput'
+              type='text'
+              labelText='Task:'
+              placeholder='Digite algo...'
+            />
           </div>
 
           <div className='formRow'>
@@ -46,6 +51,7 @@ export function App() {
           </div>
         </form>
       </Container>
+
       <Container>
         <Footer />
       </Container>
