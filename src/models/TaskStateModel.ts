@@ -1,7 +1,7 @@
 // Dados referente a aplicação completa
 
 // TaskModel
-import type { TaskModel } from './taskModel';
+import type { TaskModel } from './TaskModel';
 
 export type TaskStateModel = {
   tasks: TaskModel[];
