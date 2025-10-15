@@ -1,5 +1,5 @@
-//
-import { TaskContextProvider } from './contexts/TaskContext';
+// task provider
+import { TaskContextProvider } from './contexts/TaskContext/TaskContextProvider';
 
 // pages
 import { Home } from './pages/Home';

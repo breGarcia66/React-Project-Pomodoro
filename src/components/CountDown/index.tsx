@@ -1,6 +1,5 @@
 // hook
-import { useTaskContext } from '../../contexts/TaskContext';
-
+import { useTaskContext } from '../../contexts/TaskContext/useTaskContext';
 // ccs
 import styles from './styles.module.css';
 
