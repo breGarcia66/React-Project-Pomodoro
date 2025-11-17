@@ -1,8 +1,9 @@
 // Hooks
-import { useContext, useRef } from 'react';
+import { useRef } from 'react';
+import { useTaskContext } from '../../contexts/TaskContext/useTaskContext';
 
 // Importações gerais
-import { taskContext } from '../../contexts/TaskContext/taskContext';
+import type { TaskModel } from '../../models/TaskModel';
 
 // Compoenentes
 import { Cycles } from '../Cycles';
@@ -14,21 +15,42 @@ import { DefaultInput } from '../DefaultInput';
 import { PlayCircleIcon } from 'lucide-react';
 
 export function MainForm() {
-  const valueRef = useRef<HTMLInputElement>(null);
-
-  const {setState} = useContext(taskContext);
+  const taskNameInput = useRef<HTMLInputElement>(null);
+  const {state, setState} = useTaskContext()
 
   function handleCreateNewTask(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     
+    if (!taskNameInput.current?.value.trim()){
+      alert('Alerta: defina o nome da tarefa');
+      return
+    };
+    
+    const taskName = taskNameInput.current.value.trim();
+    taskNameInput.current.value = '';
+
+    const newTask: TaskModel = {
+      id: (state.tasks.length + 1).toString(),
+      name: taskName,
+      startDate: Date.now(),
+      completeDate: null,
+      interruptDate: null,
+      duration: 1,
+      type: 'workTime'
+    }
+
+    const secondsRemaining = newTask.duration * 60;
+
     setState(prevState => {
       const newState = structuredClone(prevState);
-
-      newState.formattedSecondsRemaining = valueRef.current.value;
-
+      
+      newState.activeTask = newTask;
+      newState.currentCycle = 1;
+      newState.secondsRemaining = secondsRemaining;
+      newState.tasks = [...newState.tasks, newTask]
+      
       return newState;
     })
-    
   }
   
   return (
@@ -39,7 +61,7 @@ export function MainForm() {
           type='text'
           labelText='Task:'
           placeholder='Digite algo...'
-          ref={valueRef}
+          ref={taskNameInput}
         />
 
       </div>

@@ -3,7 +3,7 @@ import styles from './styles.module.css';
 export function Cycles() {
   return (
     <div className={styles.cycles}>
-      <span>Cycles: '-'</span>
+      <span>Cycles:</span>
 
       <div className={styles.cyclesDots}>
         <span className={`${styles.cyclesDot} ${styles.workTime}`}></span>
