@@ -1,16 +1,34 @@
+// Hooks
+import { useContext, useRef } from 'react';
+
+// Importações gerais
+import { taskContext } from '../../contexts/TaskContext/taskContext';
+
 // Compoenentes
 import { Cycles } from '../Cycles';
 import { DefaultButton } from '../DefaultButton';
 import { DefaultInput } from '../DefaultInput';
 
+
 // Lucide icon
 import { PlayCircleIcon } from 'lucide-react';
 
 export function MainForm() {
+  const valueRef = useRef<HTMLInputElement>(null);
+
+  const {setState} = useContext(taskContext);
+
   function handleCreateNewTask(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    
+    setState(prevState => {
+      const newState = structuredClone(prevState);
 
-    console.log('Nova task');
+      newState.formattedSecondsRemaining = valueRef.current.value;
+
+      return newState;
+    })
+    
   }
   
   return (
@@ -21,7 +39,9 @@ export function MainForm() {
           type='text'
           labelText='Task:'
           placeholder='Digite algo...'
+          ref={valueRef}
         />
+
       </div>
 
       <div className='formRow'>
@@ -29,8 +49,7 @@ export function MainForm() {
       </div>
 
       <div className='formRow'>
-        <DefaultButton
-          icon={<PlayCircleIcon />}
+        <DefaultButton icon={<PlayCircleIcon />}
         />
       </div>
     </form>
