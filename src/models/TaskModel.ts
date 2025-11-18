@@ -1,7 +1,6 @@
-
 // Dados referente a task em execução
 // TaskStateModel
-import type { TaskStateModel } from "./TaskStateModel";
+import type { TaskStateModel } from './TaskStateModel';
 
 export type TaskModel = {
   id: string;
