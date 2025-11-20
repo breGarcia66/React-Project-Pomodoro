@@ -68,12 +68,21 @@ export function MainForm() {
           labelText='Task:'
           placeholder='Digite algo...'
           ref={taskNameInput}
+          disabled={!!state.activeTask}
         />
       </div>
 
       <div className='formRow'>
-        <Cycles />
+        <span>
+          O próximo ciclo será de {state.formattedSecondsRemaining} min
+        </span>
       </div>
+      
+      {state.currentCycle === 0 && (  
+        <div className='formRow'>
+          <Cycles />
+        </div>
+      )}
 
       <div className='formRow'>
         <DefaultButton icon={<PlayCircleIcon />} />
