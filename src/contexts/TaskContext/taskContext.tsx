@@ -1,20 +1,17 @@
-// hooks
+// importações
 import { createContext } from "react";
-
-// models
 import type { TaskStateModel } from "../../models/TaskStateModel";
-
-// intial state
 import { initialTaskState } from "./initialTaskState";
+import type { taskActionsModel } from "./taskAction";
 
 type TaskContextProps = {
   state: TaskStateModel;
-  setState: React.Dispatch<React.SetStateAction<TaskStateModel>>;
+  dispatchState: React.Dispatch<taskActionsModel>;
 };
 
 const contextInitialValue = {
   state: initialTaskState,
-  setState: () => console.log('valor inicial do contexto'),
+  dispatchState: () => console.log('valor inicial do contexto'),
 };
 
 export const taskContext = createContext<TaskContextProps>(contextInitialValue);
