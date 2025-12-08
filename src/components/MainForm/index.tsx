@@ -24,6 +24,18 @@ export function MainForm() {
   const nextCycle = getNextCycle(state.currentCycle);
   const nextCycleType = getNextCycleType(nextCycle);
 
+  const tipsWhenActiveTask = {
+    workTime: <span>Foque por {state.config.workTime}min</span>,
+    shortBreakTime: <span>Descanse {state.config.shortBreakTime}min</span>,
+    longBreakTime: <span>Descanse {state.config.longBreakTime}min</span>,
+  };
+
+  const tipsWhenNoActiveTask = {
+    workTime: <span>Próximo ciclo é de {state.config.workTime}min</span>,
+    shortBreakTime: <span>Próximo descanso é de {state.config.shortBreakTime}min</span>,
+    longBreakTime: <span>Próximo descanso é de {state.config.longBreakTime}min</span>,  
+  }
+
   function handleCreateNewTask(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
@@ -45,6 +57,10 @@ export function MainForm() {
     };
 
     dispatchState({ type: taskActionType.START_TASK, payload: newTask });
+
+    const worker = new Worker(new URL('../../workes/timeWorker.js', import.meta.url));
+
+    worker.postMessage('Olá, mundo!!!');
   }
 
   function handleInterruptTask() {
@@ -66,7 +82,8 @@ export function MainForm() {
 
       <div className='formRow'>
         <span>
-          O próximo ciclo será de {state.formattedSecondsRemaining} min
+          {state.activeTask && tipsWhenActiveTask[state.activeTask.type]}
+          {!state.activeTask && tipsWhenNoActiveTask[nextCycleType]}
         </span>
       </div>
 
