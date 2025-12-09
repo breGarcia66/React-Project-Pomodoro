@@ -58,9 +58,6 @@ export function MainForm() {
 
     dispatchState({ type: taskActionType.START_TASK, payload: newTask });
 
-    const worker = new Worker(new URL('../../workes/timeWorker.js', import.meta.url));
-
-    worker.postMessage('Olá, mundo!!!');
   }
 
   function handleInterruptTask() {
