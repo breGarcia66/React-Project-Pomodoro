@@ -3,7 +3,7 @@ import { useEffect, useReducer } from 'react';
 import { taskContext } from './taskContext';
 import { taskReducer } from './taskReducer';
 import { initialTaskState } from './initialTaskState';
-import { TimerWorkerManager } from '../../workes/timerWorkerManager';
+import { TimerWorkerManager } from '../../workes/TimerWorkerManager';
 import { taskActionType } from './taskAction';
 
 type TaskContextProviderProps = {
