@@ -1,5 +1,5 @@
-// task provider
 import { TaskContextProvider } from './contexts/TaskContext/TaskContextProvider';
+import { MessagesComponent } from './components/MessagesComponent';
 
 // pages
 import { Home } from './pages/Home';
@@ -12,8 +12,10 @@ import './styles/global.css';
 
 export function App() {
   return (
-  <TaskContextProvider>
-    <Home />
-  </TaskContextProvider>
-);
+    <TaskContextProvider>
+      <MessagesComponent>
+        <Home />
+      </MessagesComponent>
+    </TaskContextProvider>
+  );
 }

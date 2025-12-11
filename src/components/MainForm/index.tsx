@@ -6,6 +6,8 @@ import { useTaskContext } from '../../contexts/TaskContext/useTaskContext';
 import { getNextCycle } from '../../utils/getNextCycle';
 import type { TaskModel } from '../../models/TaskModel';
 import { getNextCycleType } from '../../utils/getNextCycleType';
+import { taskActionType } from '../../contexts/TaskContext/taskAction';
+import { showMessage } from '../../adapters/wrapperToastify';
 
 // Compoenentes
 import { Cycles } from '../Cycles';
@@ -14,7 +16,6 @@ import { DefaultInput } from '../DefaultInput';
 
 // Lucide icon
 import { PlayCircleIcon, StopCircleIcon } from 'lucide-react';
-import { taskActionType } from '../../contexts/TaskContext/taskAction';
 
 export function MainForm() {
   const taskNameInput = useRef<HTMLInputElement>(null);
@@ -39,8 +40,10 @@ export function MainForm() {
   function handleCreateNewTask(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
+    showMessage.dismiss();
+
     if (!taskNameInput.current?.value.trim()) {
-      alert('Alerta: defina o nome da tarefa');
+      showMessage.warn('Alerta: defina o nome da tarefa');
       return;
     }
 
@@ -58,9 +61,15 @@ export function MainForm() {
 
     dispatchState({ type: taskActionType.START_TASK, payload: newTask });
 
+    showMessage.success('Tarefa inicida');
   }
 
   function handleInterruptTask() {
+
+
+    showMessage.dismiss();
+    showMessage.toast('Tarefa interrompida');
+
     dispatchState({ type: taskActionType.INTERRUPT_TASK });
   }
 
