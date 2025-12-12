@@ -37,6 +37,8 @@ export function MainForm() {
     longBreakTime: <span>Próximo descanso é de {state.config.longBreakTime}min</span>,  
   }
 
+  const lastTaskName = state.tasks[state.tasks.length]?.name || '';
+
   function handleCreateNewTask(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
@@ -83,6 +85,7 @@ export function MainForm() {
           placeholder='Digite algo...'
           ref={taskNameInput}
           disabled={!!state.activeTask}
+          defaultValue={lastTaskName}
         />
       </div>
 
