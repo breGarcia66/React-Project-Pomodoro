@@ -6,6 +6,7 @@ import { initialTaskState } from './initialTaskState';
 import { TimerWorkerManager } from '../../workes/TimerWorkerManager';
 import { taskActionType } from './taskAction';
 import { loadBeep } from '../../utils/loadBeep';
+import { showMessage } from '../../adapters/wrapperToastify';
 import type { TaskStateModel } from '../../models/TaskStateModel';
 
 type TaskContextProviderProps = {
@@ -40,6 +41,8 @@ export function TaskContextProvider({ children }: TaskContextProviderProps) {
       };
 
       dispatchState({ type: taskActionType.COMPLETE_TASK });
+      
+      showMessage.success(`Tarefa ${state.tasks.length - 1} completada`)
 
       worker.terminate();
     } else {
