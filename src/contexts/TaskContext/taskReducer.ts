@@ -39,7 +39,7 @@ export function taskReducer(
       return newState;
 
     case taskActionType.RESET_STATE:
-      return initialTaskState;
+      return { ...initialTaskState };
 
     case taskActionType.COUNT_DOW: {
       newState.secondsRemaining = action.payload.secondsRemaining;

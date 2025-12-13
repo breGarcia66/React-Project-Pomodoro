@@ -37,9 +37,21 @@
   transition: all 0.2s ease-in-out;
 }
 
-.responsiveTable thead tr:hover > th,
 .responsiveTable tbody tr:hover > td {
   filter: brightness(95%);
 }
 
+.sortTableOption {
+  cursor: pointer;
+}
+
+.sortTableOption:hover {
+  background-color: var(--gray-700);
+}
+
+.textWhitoutTasks {
+  text-align: center;
+  font-style: italic;
+  color: var(--text-muted)
+}
 
