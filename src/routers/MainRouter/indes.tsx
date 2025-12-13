@@ -1,7 +1,11 @@
-import { BrowserRouter, Route, Routes } from 'react-router';
+// Pages
 import { Home } from '../../pages/Home';
 import { AboutPomodoro } from '../../pages/AboutPomodoro';
+import { History } from '../../pages/History';
 import { NotFound } from '../../pages/NotFound';
+
+// Importaçoes
+import { BrowserRouter, Route, Routes } from 'react-router';
 import { useLocation } from 'react-router';
 import { useEffect } from 'react';
 
@@ -22,6 +26,7 @@ export function MainRouter() {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/about-pomodoro' element={<AboutPomodoro />} />
+        <Route path='/history/' element={<History />} />
         <Route path='*' element={<NotFound />} />
       </Routes>
     </BrowserRouter>
