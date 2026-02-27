@@ -36,7 +36,6 @@ export function History() {
     },
   );
 
-
   useEffect(() => {
     setSortTasksOptions(prevSortTasksOptions => ({
       ...prevSortTasksOptions,
@@ -49,13 +48,18 @@ export function History() {
   }, [state.tasks]);
 
   useEffect(() => {
-    if(!confirmClearHistory) return;
+    if (!confirmClearHistory) return;
 
-    console.log('Apagar histórico de tarefas');
     setConfirmClearHistory(false);
 
     dispatchState({ type: taskActionType.RESET_STATE });
-  }, [confirmClearHistory])
+  }, [confirmClearHistory]);
+
+  useEffect(() => {
+    return () => {
+      showMessage.dismiss();
+    };
+  }, []);
 
   function handleSortTasks({ field }: Pick<SortTasksOptions, 'field'>) {
     const newDirection = sortTasksOption.direction === 'desc' ? 'asc' : 'desc';
@@ -73,9 +77,9 @@ export function History() {
 
   function handleResetHistory() {
     showMessage.dismiss();
-    showMessage.confirm('Apagar histórico?', (confirmation => {
+    showMessage.confirm('Apagar histórico?', confirmation => {
       setConfirmClearHistory(confirmation);
-    }))
+    });
   }
 
   return (
