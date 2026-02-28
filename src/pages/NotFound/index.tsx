@@ -7,7 +7,14 @@ import { RouterLink } from '../../components/RouterLink';
 // templates
 import { MainTemplate } from '../../templates/MainTemplate';
 
+import { useEffect } from 'react';
+
 export function NotFound() {
+  
+  useEffect(() => {
+    document.title = '404 Página não econtrada - Chronos Pomodoro';
+  }, []);
+
   return (
     <MainTemplate>
       <Container>

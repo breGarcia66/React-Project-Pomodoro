@@ -8,27 +8,34 @@ export enum taskActionType {
   RESET_STATE = 'RESET_STATE',
   COUNT_DOW = 'COUNT_DOWN',
   COMPLETE_TASK = 'COMPLETE_TASK',
-  CHANGE_SETTINGS = 'CHANGE_SETTINGS'
-};
-
-type taskActionsWithPayload = {
-  type: taskActionType.START_TASK;
-  payload: TaskModel;
-} | {
-  type: taskActionType.COUNT_DOW;
-  payload: {secondsRemaining: number};
-} | {
-  type: taskActionType.CHANGE_SETTINGS;
-  payload: TaskStateModel['config'];
+  CHANGE_SETTINGS = 'CHANGE_SETTINGS',
 }
 
-type taskActionsWithoutPayload = {
-  type: taskActionType.RESET_STATE;
-} | {
-  type: taskActionType.INTERRUPT_TASK;
-} | {
-  type: taskActionType.COMPLETE_TASK;
-}
-  
-export type taskActionsModel = taskActionsWithPayload | taskActionsWithoutPayload;
+type taskActionsWithPayload =
+  | {
+      type: taskActionType.START_TASK;
+      payload: TaskModel;
+    }
+  | {
+      type: taskActionType.COUNT_DOW;
+      payload: { secondsRemaining: number };
+    }
+  | {
+      type: taskActionType.CHANGE_SETTINGS;
+      payload: TaskStateModel['config'];
+    };
 
+type taskActionsWithoutPayload =
+  | {
+      type: taskActionType.RESET_STATE;
+    }
+  | {
+      type: taskActionType.INTERRUPT_TASK;
+    }
+  | {
+      type: taskActionType.COMPLETE_TASK;
+    };
+
+export type taskActionsModel =
+  | taskActionsWithPayload
+  | taskActionsWithoutPayload;

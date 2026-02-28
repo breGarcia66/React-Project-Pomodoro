@@ -3,7 +3,6 @@ import type { TaskStateModel } from '../../models/TaskStateModel';
 import { getNextCycle } from '../../utils/getNextCycle';
 import { type taskActionsModel, taskActionType } from './taskAction';
 import { formatSecondsToMinutes } from '../../utils/formatSecondToMinutes';
-import { initialTaskState } from './initialTaskState';
 
 export function taskReducer(
   state: TaskStateModel,

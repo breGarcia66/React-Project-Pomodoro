@@ -7,8 +7,13 @@ import { RouterLink } from '../../components/RouterLink';
 // templates
 import { MainTemplate } from '../../templates/MainTemplate';
 
+import { useEffect } from 'react';
 
 export function AboutPomodoro() {
+  useEffect(() => {
+    document.title = 'Entenda a técnica pomodoro - Chronos Pomodoro';
+  }, [])
+
   return (
     <MainTemplate>
       <Container>

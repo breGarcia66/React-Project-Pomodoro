@@ -12,7 +12,7 @@ import { useTaskContext } from '../../contexts/TaskContext/useTaskContext';
 import { SaveIcon } from 'lucide-react';
 
 // outros imports
-import { useRef } from 'react';
+import { useRef, useEffect } from 'react';
 import { MainTemplate } from '../../templates/MainTemplate';
 import { showMessage } from '../../adapters/wrapperToastify';
 
@@ -22,6 +22,10 @@ export function Settings() {
   const workTimeRef = useRef<HTMLInputElement>(null);
   const shortBreakTimeRef = useRef<HTMLInputElement>(null);
   const longBreakTimeRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    document.title = 'Configurações - Chronos Pomodoro';
+  }, []);
 
   function handleSaveSettings(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
